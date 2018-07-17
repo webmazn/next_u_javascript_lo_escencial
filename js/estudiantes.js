@@ -33,7 +33,7 @@ var objeto = {
         {
             "codigo" : "EST0007",
             "nombre" : "Ricardo More Gallegos",
-            "nota" : 18
+            "nota" : 16
         },
         {
             "codigo" : "EST0008",
@@ -43,102 +43,82 @@ var objeto = {
         {
             "codigo" : "EST0009",
             "nombre" : "Jenny Bazan Robles",
-            "nota" : 15
+            "nota" : 13
         },
         {
             "codigo" : "EST0010",
             "nombre" : "Gerson Obregon Leiva",
             "nota" : 19
-        },
-        {
-            "codigo" : "EST0011",
-            "nombre" : "Eddie Santiago Ruiz",
-            "nota" : 16
-        },
-        {
-            "codigo" : "EST0012",
-            "nombre" : "Gustavo Mego Diaz",
-            "nota" : 13
-        },
-        {
-            "codigo" : "EST0013",
-            "nombre" : "Erika Delgado Torres",
-            "nota" : 18
-        },
-        {
-            "codigo" : "EST0014",
-            "nombre" : "Andrea Torres Iglesias",
-            "nota" : 14
-        },
-        {
-            "codigo" : "EST0015",
-            "nombre" : "Rosa Del Carpio Flores",
-            "nota" : 12
-        },
-        {
-            "codigo" : "EST0016",
-            "nombre" : "Silvana Diaz Osores",
-            "nota" : 10
-        },
-        {
-            "codigo" : "EST0017",
-            "nombre" : "Ana Maria Praderas del Rio",
-            "nota" : 19
-        },
-        {
-            "codigo" : "EST0018",
-            "nombre" : "Juan Pablo Genoves Solaris",
-            "nota" : 13
-        },
-        {
-            "codigo" : "EST0019",
-            "nombre" : "Jorge Frias Malpartida",
-            "nota" : 12
-        },
-        {
-            "codigo" : "EST0020",
-            "nombre" : "Elizabeth Puente Ramos",
-            "nota" : 18
-        },
-        {
-            "codigo" : "EST0021",
-            "nombre" : "Iris Anicama Zamora",
-            "nota" : 12
-        },
-        {
-            "codigo" : "EST0022",
-            "nombre" : "Eulalia Pascual Ubillus",
-            "nota" : 19
-        },
-        {
-            "codigo" : "EST0023",
-            "nombre" : "Dante Sanchez Egocheaga",
-            "nota" : 18
         }
 ]};
 
-function listadoEstudiantes(){
-    let rset=document.getElementById("resultados"),
-        html=`<table>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Nota</th>
-                </tr>`
-    for(let i=0; i<objeto.length; i++){
-        html += `<tr>
-                    <td>${objeto.estudiantes[i].codigo}</td>
-                    <td>${objeto.estudiantes[i].nombre}</td>
-                    <td>${objeto.estudiantes[i].nota}</td>
-                </tr>`
+var titulo = document.getElementById("titulo"),
+    resultado = document.getElementById("resultados"),
+    total = objeto.estudiantes.length,
+    
+MyApp = {
+        listadoEstudiantes : function(){
+            let html= `<table class="tbl_resultados">
+                        <tr>
+                            <th width="20%">Código</th>
+                            <th width="60%">Nombre</th>
+                            <th width="20%">Nota</th>
+                        </tr>`
+            for(let i=0; i<total; i++){
+                html += `<tr>
+                            <td align="center">${objeto.estudiantes[i].codigo}</td>
+                            <td align="left">${objeto.estudiantes[i].nombre}</td>
+                            <td align="center">${objeto.estudiantes[i].nota}</td>
+                        </tr>`
+            }
+            html += `</table>`
+            titulo.innerHTML = "Listado de Estudiantes"
+            resultado.innerHTML = html
+        },
+        promedioNotas : function(){
+            let acumulador=0,
+                promedio=0
+            for(let i=0; i<total; i++){
+                acumulador += parseInt(objeto.estudiantes[i].nota)
+            }
+            promedio = acumulador / total
+            titulo.innerHTML = "Nota Promedio"
+            resultado.innerHTML = `Nota: <strong>${promedio}</strong>`
+        },
+        mayorNota : function(){
+            let mayor=-Infinity,
+                posicion=0
+            for(let i=0; i<total; i++){
+                if(parseInt(objeto.estudiantes[i].nota)>mayor){
+                    mayor=parseInt(objeto.estudiantes[i].nota)
+                    posicion=i
+                }
+            }
+            titulo.innerHTML = "Mayor Nota"
+            resultado.innerHTML = `
+                        Codigo: <strong>${objeto.estudiantes[posicion].codigo}</strong><br>
+                        Nombre: <strong>${objeto.estudiantes[posicion].nombre}</strong><br>
+                        Nota: <strong>${mayor}</strong>`
+        },
+        menorNota : function(){
+            let menor=Infinity,
+                posicion=0
+            for(let i=0; i<total; i++){
+                if(parseInt(objeto.estudiantes[i].nota)<menor){
+                    menor=parseInt(objeto.estudiantes[i].nota)
+                    posicion=i
+                }
+            }
+            titulo.innerHTML = "Menor Nota"
+            resultado.innerHTML = `
+                        Codigo: <strong>${objeto.estudiantes[posicion].codigo}</strong><br>
+                        Nombre: <strong>${objeto.estudiantes[posicion].nombre}</strong><br>
+                        Nota: <strong>${menor}</strong>`
+        }   
     }
-    html += `</table>`
-    rset.innerHTML = html
-}
-/*promedioNotas
-mayorNota
-menorNota*/
 
+
+MyApp.listadoEstudiantes()
 
 
 
