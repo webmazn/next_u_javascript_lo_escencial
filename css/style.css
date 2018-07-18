@@ -97,9 +97,14 @@ nav ul li a.active{
 #galeria{
     flex-wrap: wrap;
 }
-#banner_secundario div{
-    width: 48%;
+
+#banner_secundario div:first-child{
+    width: 29%;
 }
+#banner_secundario div:last-child{
+    width: 67%;
+}
+
 #banner_secundario div h3{
     box-sizing: border-box;
     color: #000000;
@@ -123,7 +128,7 @@ nav ul li a.active{
     }
 }
 #banner_secundario div:first-child img:hover{
-    -webkit-animation-name: left-animation;
+    /*-webkit-animation-name: left-animation;
     -webkit-animation-duration: 1s;
     -webkit-animation-timing-function: ease;
     -webkit-animation-delay: .25s;
@@ -135,7 +140,7 @@ nav ul li a.active{
     animation-timing-function: ease;
     animation-delay: .25s;
     animation-iteration-count: infinite;
-    animation-direction: alternate;
+    animation-direction: alternate;*/
 }
 @-webkit-keyframes right-animation{
     100%{ 
@@ -145,8 +150,8 @@ nav ul li a.active{
         transform: translate(20px, -5px)
     }
 }
-#banner_secundario div:last-child img:hover{    
-    -webkit-animation-name: right-animation;
+#banner_secundario div:last-child img{    
+    /*-webkit-animation-name: right-animation;
     -webkit-animation-duration: 1s;
     -webkit-animation-timing-function: ease;
     -webkit-animation-delay: .25s;
@@ -158,7 +163,7 @@ nav ul li a.active{
     animation-timing-function: ease;
     animation-delay: .25s;
     animation-iteration-count: infinite;
-    animation-direction: alternate;
+    animation-direction: alternate;*/
 }
 #galeria div{
     width: 31.5%;
@@ -219,6 +224,7 @@ footer div:nth-child(3) a{
     background: #ffffff;
     box-sizing: border-box;    
     min-height: 410px;
+    font-size: 12px;
     padding: 10px;    
     width: 100% !important;
 }
@@ -242,8 +248,21 @@ footer div:nth-child(3) a{
 .tbl_resultados tr:nth-child(even){
     background: #ededed;
 }
-
-
+.tbl_resultados img{
+    width: 25px !important;
+}
+.tbl_resultados a{
+    color: #000000;
+    font-weight: bold;
+}
+.foto{
+    height: auto !important;
+    width: 150px !important;
+}
+.faces{
+    height: auto !important;
+    width: 116px !important;   
+}
 
 @media screen and (max-width: 768px) {
     header,
@@ -271,7 +290,8 @@ footer div:nth-child(3) a{
     #banner_principal img{
         width: 100%;
     }
-    #banner_secundario div,
+    #banner_secundario div:first-child,
+    #banner_secundario div:last-child,
     footer div{
         width: 100%;
     }
